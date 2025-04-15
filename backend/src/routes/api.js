@@ -7,7 +7,7 @@ const prisma = new PrismaClient()
 
 router.get('/', async (req, res) => {
     try {
-        res.send("hello pello")
+        res.send("hello")
 
   } catch (err) {
     console.log(err);

@@ -1,28 +1,24 @@
 const express = require('express');
-const socket = require("socket.io")
+const cors = require('cors');
+const socket = require('socket.io');
 
 const app = express();
-const apiRoutes = require('./routes/api');
-
-const cors = require('cors');
+app.use(cors()); // still useful for REST APIs
 app.use(express.json());
-app.use(cors());
-app.use('/api', apiRoutes);
 
+const server = app.listen(3000, () => {
+  console.log('Server is running on port 3000');
+});
 
-const port = process.env.PORT || 3000;
-const server = app.listen(port)
-console.log(`Socket server is running on port ${port}`);
+const io = socket(server, {
+  cors: {
+    // origin: 'http://localhost:5173', // or '*' for dev
+    origin: '*', // or '*' for dev
+    methods: ['GET', 'POST'],
+    credentials: true,
+  }
+});
 
-const io = socket(server);
-
-io.sockets.on('connection', newConnection);
-
-function newConnection (socket) {
-    console.log(socket);
-
-}
-
-// app.listen(port, () => {
-//     console.log(`listening on port ${port}`);
-// });
+io.on('connection', (socket) => {
+  console.log('New WebSocket connection:', socket.id);
+});

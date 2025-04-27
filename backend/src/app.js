@@ -20,7 +20,6 @@ io.sockets.on('connection', newConnection);
 
 function newConnection (socket) {
     console.log(socket);
-
 }
 
 // app.listen(port, () => {

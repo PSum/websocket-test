@@ -21,4 +21,14 @@ const io = socket(server, {
 
 io.on('connection', (socket) => {
   console.log('New WebSocket connection:', socket.id);
+
+  // Send a message to the client every 5 seconds
+  const interval = setInterval(() => {
+    socket.emit('message', { text: 'Hello from server!', time: new Date().toISOString() });
+  }, 5000); // 5000ms = 5 seconds
+
+  socket.on('disconnect', () => {
+    console.log('Socket disconnected:', socket.id);
+    clearInterval(interval); // Clear interval when client disconnects!
+  });
 });

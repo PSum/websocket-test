@@ -2,7 +2,7 @@ import { useContext, useEffect } from 'react';
 import { AppContext } from '../App';
 
 function Content() {
-  const { socket } = useContext(AppContext);
+  const { socket, setSocket } = useContext(AppContext);
 
   useEffect(() => {
     if (!socket) return;

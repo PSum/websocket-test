@@ -19,7 +19,7 @@ function App() {
   }, []);
 
   return (
-    <AppContext.Provider value={{ test, setTest, socket }}>
+    <AppContext.Provider value={{ test, setTest, socket, setSocket }}>
       <Content />
     </AppContext.Provider>
   );

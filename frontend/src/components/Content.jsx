@@ -16,7 +16,7 @@ function Content() {
       console.log("hey")
       console.log('📩 Message from server:', data);
       socket.emit('thisIsAKeyword', 1, "message received")
-      console.log('Emitted thisIsAKeyword');
+      console.log('Emitted keyword');
     });
 
     return () => {

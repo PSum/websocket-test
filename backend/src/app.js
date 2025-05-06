@@ -27,10 +27,12 @@ io.on('connection', (socket) => {
     socket.emit('message', { text: 'Hello from server!', time: new Date().toISOString() });
   }, 5000); // 5000ms = 5 seconds
 
-socket.on('thisIsAKeyword', (arg1, arg2) => {
-  console.log('thisIsAKeyword event received!');
-  console.log(arg1, arg2);
-});
+  // Here we are listening for the client to send the keyword 'thisIsAKeyword' 
+  // After the socket receives the keyword it prints a success statement and prints the arguments
+  socket.on('thisIsAKeyword', (arg1, arg2) => {
+    console.log('thisIsAKeyword event received!');
+    console.log(arg1, arg2);
+  });
 
   socket.on('disconnect', () => {
     console.log('Socket disconnected:', socket.id);

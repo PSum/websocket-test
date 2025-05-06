@@ -7,6 +7,7 @@ function Content() {
   useEffect(() => {
     if (!socket) return;
 
+    // The client waits for the server to send the message 'connect' and then executes the code
     socket.on('connect', () => {
       console.log('✅ Connected to server with ID:', socket.id);
     });
